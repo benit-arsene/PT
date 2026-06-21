@@ -55,11 +55,21 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={() => handleClick("#home")}
-            className="text-xl font-bold tracking-tight"
+            className="group flex items-center"
           >
-            <span className="text-primary">B</span>
-            <span className="text-text-primary">A</span>
-            <span className="text-primary">N</span>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-primary/25 bg-primary/5 group-hover:bg-primary/10 group-hover:border-primary/40 group-hover:shadow-[0_0_12px_-2px_rgba(16,185,129,0.15)] transition-all duration-300">
+              {/* Code bracket icon */}
+              <span className="text-primary font-mono text-sm font-semibold leading-none tracking-tight">
+                &lt;/
+                <span className="inline-block transition-transform duration-300 group-hover:-translate-y-px">&gt;</span>
+              </span>
+              {/* Divider dot */}
+              <span className="w-[3px] h-[3px] rounded-full bg-primary/40 group-hover:bg-primary/60 transition-colors duration-300" />
+              {/* BAN initials */}
+              <span className="text-text-primary font-bold text-base tracking-tight">
+                <span className="text-primary">B</span>A<span className="text-primary">N</span>
+              </span>
+            </div>
           </button>
 
           {/* Desktop Links */}

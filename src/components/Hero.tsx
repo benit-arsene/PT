@@ -93,8 +93,7 @@ export default function Hero() {
 
         {/* Description */}
         <p className="text-text-secondary text-base sm:text-lg max-w-2xl mx-auto mb-10 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-          I craft elegant digital experiences that blend seamless functionality with
-          stunning design. Passionate about building products that make a difference.
+          I create easy-to-use digital products with clean and attractive designs. I enjoy building solutions that help people and make a positive impact.
         </p>
 
         {/* CTA Buttons */}
@@ -112,23 +111,23 @@ export default function Hero() {
             Get In Touch
           </button>
         </div>
+      </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg
-            className="w-6 h-6 text-text-muted"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </div>
+      {/* Scroll indicator - positioned at bottom of viewport */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg
+          className="w-6 h-6 text-text-muted"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          />
+        </svg>
       </div>
     </section>
   );

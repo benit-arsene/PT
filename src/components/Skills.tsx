@@ -1,31 +1,51 @@
 const skillCategories = [
   {
     title: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS"],
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "HTML/CSS",
+      "Tailwind CSS",
+      "VS Code",
+      "Vercel",
+    ],
     color: "from-blue-500/20 to-blue-500/5",
     borderColor: "border-blue-500/20",
     textColor: "text-blue-400",
   },
   {
-    title: "Backend",
-    skills: ["Node.js", "Express", "Python", "REST APIs", "GraphQL", "PostgreSQL"],
+    title: "Backend & DevOps",
+    skills: [
+      "Node.js",
+      "Express",
+      "Python",
+      "REST APIs",
+      "GraphQL",
+      "PostgreSQL",
+      "Git",
+      "GitHub",
+      "Docker",
+      "CI/CD",
+    ],
     color: "from-green-500/20 to-green-500/5",
     borderColor: "border-green-500/20",
     textColor: "text-green-400",
   },
   {
     title: "Design",
-    skills: ["Figma", "UI/UX Design", "Wireframing", "Prototyping", "Design Systems", "User Research"],
+    skills: [
+      "Figma",
+      "UI/UX Design",
+      "Wireframing",
+      "Prototyping",
+      "Design Systems",
+      "User Research",
+    ],
     color: "from-purple-500/20 to-purple-500/5",
     borderColor: "border-purple-500/20",
     textColor: "text-purple-400",
-  },
-  {
-    title: "Tools & DevOps",
-    skills: ["Git", "GitHub", "VS Code", "Docker", "CI/CD", "Vercel"],
-    color: "from-orange-500/20 to-orange-500/5",
-    borderColor: "border-orange-500/20",
-    textColor: "text-orange-400",
   },
 ];
 
@@ -38,13 +58,13 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="section-heading">Skills & Tech Stack</h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {skillCategories.map((category) => (
             <div
               key={category.title}
-              className={`rounded-2xl border ${category.borderColor} bg-gradient-to-b ${category.color} p-6 card-hover`}
+              className={`rounded-2xl border ${category.borderColor} bg-gradient-to-b ${category.color} p-6 sm:p-8 card-hover`}
             >
-              <h3 className={`text-lg font-semibold mb-4 ${category.textColor}`}>
+              <h3 className={`text-lg sm:text-xl font-semibold mb-4 sm:mb-5 ${category.textColor}`}>
                 {category.title}
               </h3>
               <ul className="space-y-2.5">
@@ -53,7 +73,7 @@ export default function Skills() {
                     key={skill}
                     className="flex items-center gap-2 text-text-secondary text-sm"
                   >
-                    <span className={`w-1.5 h-1.5 rounded-full ${category.textColor} bg-current`} />
+                    <span className={`w-1.5 h-1.5 rounded-full ${category.textColor} bg-current flex-shrink-0`} />
                     {skill}
                   </li>
                 ))}
