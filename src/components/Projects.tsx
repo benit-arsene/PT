@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const projects = [
   {
     title: "LisTrack",
@@ -8,25 +10,21 @@ const projects = [
     borderColor: "border-emerald-500/20",
     link: "https://listrack-2.onrender.com/dashboard.html",
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.5}
-          d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+      <div className="relative w-6 h-6">
+        <Image
+          src="/listrack-logo.png"
+          alt="LisTrack Logo"
+          width={24}
+          height={24}
+          className="object-contain"
         />
-      </svg>
+      </div>
     ),
   },
   {
-    title: "Social Media Dashboard",
+    title: "Vault Allowance",
     description:
-      "Real-time analytics dashboard for social media metrics with interactive charts, data exports, and multi-platform support.",
+      "Save smarter, track your progress, and reach your financial goals with ease.",
     tags: ["Next.js", "TypeScript", "D3.js", "WebSockets"],
     gradient: "from-blue-500/20 to-blue-500/5",
     borderColor: "border-blue-500/20",
@@ -105,7 +103,7 @@ export default function Projects() {
             const cardContent = (
               <>
                 {/* Icon */}
-                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4 group-hover:bg-primary/20 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   {project.icon}
                 </div>
 

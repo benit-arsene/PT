@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import DownloadCVButton from "@/components/DownloadCVButton";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -50,30 +51,33 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
-          <button
-            onClick={() => handleClick("#home")}
-            className="group flex items-center"
-          >
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-primary/25 bg-primary/5 group-hover:bg-primary/10 group-hover:border-primary/40 group-hover:shadow-[0_0_12px_-2px_rgba(16,185,129,0.15)] transition-all duration-300">
-              {/* Code bracket icon */}
-              <span className="text-primary font-mono text-sm font-semibold leading-none tracking-tight">
-                &lt;/
-                <span className="inline-block transition-transform duration-300 group-hover:-translate-y-px">&gt;</span>
-              </span>
-              {/* Divider dot */}
-              <span className="w-[3px] h-[3px] rounded-full bg-primary/40 group-hover:bg-primary/60 transition-colors duration-300" />
-              {/* BAN initials */}
-              <span className="text-text-primary font-bold text-base tracking-tight">
-                <span className="text-primary">B</span>A<span className="text-primary">N</span>
-              </span>
-            </div>
-          </button>
+      <div className="flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6 lg:px-8">
+        {/* Logo */}
+        <button
+          onClick={() => handleClick("#home")}
+          className="group flex items-center shrink-0"
+        >
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-primary/25 bg-primary/5 group-hover:bg-primary/10 group-hover:border-primary/40 group-hover:shadow-[0_0_12px_-2px_rgba(16,185,129,0.15)] transition-all duration-300">
+          {/* Code bracket icon */}
+          <span className="text-primary font-mono text-sm font-semibold leading-none tracking-tight">
+            &lt;/
+            <span className="inline-block transition-transform duration-300 group-hover:-translate-y-px">
+              &gt;
+            </span>
+          </span>
+          {/* Divider dot */}
+          <span className="w-[3px] h-[3px] rounded-full bg-primary/40 group-hover:bg-primary/60 transition-colors duration-300" />
+          {/* BAN initials */}
+          <span className="text-text-primary font-bold text-base tracking-tight">
+            <span className="text-primary">N</span>B
+            <span className="text-primary">A</span>
+          </span>
+          </div>
+        </button>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-1">
+        {/* Desktop: Nav Links + Download CV button - flushed to right edge */}
+        <div className="hidden md:flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {navLinks.map((link) => (
               <button
                 key={link.href}
@@ -88,11 +92,17 @@ export default function Navbar() {
               </button>
             ))}
           </div>
+          <div className="pl-3 border-l border-border/50">
+            <DownloadCVButton navbar />
+          </div>
+        </div>
 
-          {/* Mobile Hamburger */}
+        {/* Mobile: Download CV + Hamburger */}
+        <div className="flex items-center gap-2 md:hidden">
+          <DownloadCVButton compact />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-lighter transition-colors"
+            className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-lighter transition-colors"
             aria-label="Toggle menu"
           >
             <div className="w-5 h-4 relative flex flex-col justify-between">
