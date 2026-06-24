@@ -51,7 +51,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6 lg:px-8">
+      <div className="flex items-center justify-between h-16 sm:h-20 px-6 sm:px-8 lg:px-12">
         {/* Logo */}
         <button
           onClick={() => handleClick("#home")}
