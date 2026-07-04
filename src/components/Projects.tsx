@@ -8,7 +8,7 @@ const projects = [
     tags: ["JavaScript", "HTML", "Browser Extension"],
     gradient: "from-emerald-500/20 to-emerald-500/5",
     borderColor: "border-emerald-500/20",
-    link: "https://listrack-2.onrender.com/dashboard.html",
+    link: "https://listrack-2.onrender.com/",
     icon: (
       <div className="relative w-6 h-6">
         <Image
