@@ -22,12 +22,13 @@ const projects = [
     ),
   },
   {
-    title: "Vault Allowance",
+    title: "AdMuter",
     description:
-      "Save smarter, track your progress, and reach your financial goals with ease.",
-    tags: ["Next.js", "TypeScript", "D3.js", "WebSockets"],
-    gradient: "from-blue-500/20 to-blue-500/5",
-    borderColor: "border-blue-500/20",
+      "A lightweight Android utility that automatically detects and mutes Spotify audio ads, providing uninterrupted music playback on Spotify's free tier.",
+    tags: ["Kotlin", "Android", "Material Design 3"],
+    gradient: "from-orange-500/20 to-orange-500/5",
+    borderColor: "border-orange-500/20",
+    link: "https://github.com/benit-arsene/admuter",
     icon: (
       <svg
         className="w-6 h-6"
@@ -39,7 +40,13 @@ const projects = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={1.5}
-          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+          d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
         />
       </svg>
     ),

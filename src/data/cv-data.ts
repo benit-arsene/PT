@@ -52,11 +52,11 @@ export const cvData = {
       link: "https://listrack-2.onrender.com/dashboard.html",
     },
     {
-      title: "Social Media Dashboard",
+      title: "AdMuter",
       description:
-        "Real-time analytics dashboard for social media metrics with interactive charts, data exports, and multi-platform support.",
-      tech: ["Next.js", "TypeScript", "D3.js", "WebSockets"],
-      link: undefined as string | undefined,
+        "A lightweight Android utility that automatically detects and mutes Spotify audio ads for uninterrupted playback on the free tier.",
+      tech: ["Kotlin", "Android", "Material Design 3"],
+      link: "https://github.com/benit-arsene/admuter",
     },
     {
       title: "Task Management App",
