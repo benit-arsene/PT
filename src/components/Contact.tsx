@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 const contactInfo = [
@@ -62,6 +62,16 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const successTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Clean up the auto-dismiss timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (successTimeoutRef.current) {
+        clearTimeout(successTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,7 +91,7 @@ export default function Contact() {
       if (result.text === "OK") {
         setSuccess(true);
         form.reset();
-        setTimeout(() => setSuccess(false), 6000);
+        successTimeoutRef.current = setTimeout(() => setSuccess(false), 6000);
       }
     } catch (err) {
       setError(true);
@@ -175,7 +185,10 @@ export default function Contact() {
                   Thank you! I&apos;ll get back to you as soon as possible.
                 </p>
                 <button
-                  onClick={() => setSuccess(false)}
+                  onClick={() => {
+                    if (successTimeoutRef.current) clearTimeout(successTimeoutRef.current);
+                    setSuccess(false);
+                  }}
                   className="mt-6 text-sm text-primary hover:text-primary-light transition-colors"
                 >
                   Send another message →
