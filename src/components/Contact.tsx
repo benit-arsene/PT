@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const contactInfo = [
   {
@@ -57,12 +58,41 @@ const socialLinks = [
 ];
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setLoading(true);
+    setError(false);
+    setErrorMessage("");
+
+    try {
+      const form = e.target as HTMLFormElement;
+      const result = await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        form,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      if (result.text === "OK") {
+        setSuccess(true);
+        form.reset();
+        setTimeout(() => setSuccess(false), 6000);
+      }
+    } catch (err) {
+      setError(true);
+      setErrorMessage(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again later."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -133,7 +163,7 @@ export default function Contact() {
 
           {/* Right - Contact Form */}
           <div className="rounded-2xl border border-border bg-surface-light p-6 sm:p-8">
-            {submitted ? (
+            {success ? (
               <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
                 <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4">
                   <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,6 +174,12 @@ export default function Contact() {
                 <p className="text-text-secondary text-sm">
                   Thank you! I&apos;ll get back to you as soon as possible.
                 </p>
+                <button
+                  onClick={() => setSuccess(false)}
+                  className="mt-6 text-sm text-primary hover:text-primary-light transition-colors"
+                >
+                  Send another message →
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -155,6 +191,7 @@ export default function Contact() {
                     <input
                       type="text"
                       id="name"
+                      name="from_name"
                       placeholder="Your name"
                       required
                       className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all text-sm"
@@ -167,6 +204,7 @@ export default function Contact() {
                     <input
                       type="email"
                       id="email"
+                      name="reply_to"
                       placeholder="your@email.com"
                       required
                       className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all text-sm"
@@ -181,7 +219,9 @@ export default function Contact() {
                   <input
                     type="text"
                     id="subject"
+                    name="subject"
                     placeholder="What's this about?"
+                    required
                     className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all text-sm"
                   />
                 </div>
@@ -192,6 +232,7 @@ export default function Contact() {
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={5}
                     placeholder="Tell me about your project..."
                     required
@@ -199,11 +240,31 @@ export default function Contact() {
                   />
                 </div>
 
+                {error && (
+                  <div className="flex items-start gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20">
+                    <svg className="w-5 h-5 shrink-0 mt-0.5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p className="text-red-400 text-sm">{errorMessage}</p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full px-6 py-3.5 rounded-xl bg-primary text-white font-semibold text-sm hover:bg-primary-dark transition-all duration-300 active:scale-[0.98]"
+                  disabled={loading}
+                  className="w-full px-6 py-3.5 rounded-xl bg-primary text-white font-semibold text-sm hover:bg-primary-dark transition-all duration-300 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
                 >
-                  Send Message
+                  {loading ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    "Send Message"
+                  )}
                 </button>
               </form>
             )}
