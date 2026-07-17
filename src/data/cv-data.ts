@@ -2,7 +2,7 @@ export const cvData = {
   name: "Benit Arsene NSHUTIYIMANA",
   title: "Full Stack Developer & UI/UX Designer",
   location: "Kigali, Rwanda",
-  email: "benitarsene.y@gmail.com",
+  email: "takeoffbenit123@gmail.com",
   phone: "+250 799 347 619",
   github: "https://github.com/benit-arsene",
   summary:
